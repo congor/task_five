@@ -32,6 +32,11 @@ def question_details(request, id=None): #3 Conntroller to show details of a ques
         "title": instance.title,
         "instance": instance,
     })
-    
-    
+ 
+def popular(request): #4
+    page, paginator = paginate(request, Question.objects.popular())
+    return render(request, 'index.html', {
+        'paginator': paginator,
+        'page': page,         
+    })    
  # Create your views here.
